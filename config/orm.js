@@ -44,19 +44,11 @@ function printQuestionMarks(num) {
         cb(result);
       });
     },
-    insertOne: function(table, cols, vals, cb) {
-      var queryString = "INSERT INTO " + table;
+    insertOne: function(burgerName, cb) {
+      console.log(burgerName);
+      
   
-      queryString += " (";
-      queryString += cols.toString();
-      queryString += ") ";
-      queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
-      queryString += ") ";
-  
-      console.log(queryString);
-  
-      connection.query(queryString, vals, function(err, result) {
+      connection.query(`INSERT INTO burgers (burger_name, devoured) VALUES ('${burgerName}', false)`, function(err, result) {
         if (err) {
           throw err;
         }
